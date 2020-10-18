@@ -39,8 +39,8 @@ baseurl: "/World_of_ML" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: fastdotai
-    github: fastai
+    twitter: Vivek2509_
+    github: Vivek2509
 
 # Set this to true to get LaTeX math equation support
 use_math: 
