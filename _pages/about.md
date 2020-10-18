@@ -4,8 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+![Vivek2509](https://github.com/Vivek2509/World_of_ML/blob/master/images/Vivek2509.jpg)
 
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+**AI/ML enthusiast with ♥ in photography 📸.**
