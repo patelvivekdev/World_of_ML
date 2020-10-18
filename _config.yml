@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: World_of_ML
-description: Making world a better with data and machine
+description: Make the world a better with data and machine
 github_username: Vivek2509
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "World_of_ML"
@@ -41,6 +41,9 @@ minima:
   social_links:
     twitter: Vivek2509_
     github: Vivek2509
+    linkedin: Vivek2509
+    pinterest: Vivek2509_
+    instagram: Vivek2509_
 
 # Set this to true to get LaTeX math equation support
 use_math: 
