@@ -33,7 +33,7 @@ title: Start write blog
   
 ## Adding stuff
   - Make sure are you add stuff into direct `master OR main` branch.<br> 
-  - You can add notebook, word and markdown file into <br>
+  - You can add notebook, word and markdown file into `_notebook` , `_posts` and `_word` folder according to. <br>
   - You can upload images as wall in `images` folder<br>
   
    ![]({{ site.baseurl }}/images/Add.png)
