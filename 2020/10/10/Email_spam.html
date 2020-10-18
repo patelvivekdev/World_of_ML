@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Email Spam Detector | World_of_ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Email Spam Detector" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Making world a better with data and machine" />
+<meta property="og:description" content="Making world a better with data and machine" />
+<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/2020/10/10/Email_spam.html" />
+<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/2020/10/10/Email_spam.html" />
+<meta property="og:site_name" content="World_of_ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-10T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Making world a better with data and machine","url":"https://vivek2509.github.io/World_of_ML/2020/10/10/Email_spam.html","@type":"BlogPosting","headline":"Email Spam Detector","dateModified":"2020-10-10T00:00:00-05:00","datePublished":"2020-10-10T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/2020/10/10/Email_spam.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/World_of_ML/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://vivek2509.github.io/World_of_ML/feed.xml" title="World_of_ML" /><link rel="shortcut icon" type="image/x-icon" href="/World_of_ML/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/World_of_ML/">World_of_ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/World_of_ML/about/">About Me</a><a class="page-link" href="/World_of_ML/search/">Search</a><a class="page-link" href="/World_of_ML/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Email Spam Detector</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-10T00:00:00-05:00" itemprop="datePublished">
+        Oct 10, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/Vivek2509/World_of_ML/tree/master/_notebooks/2020-10-10-Email_spam.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/World_of_ML/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Vivek2509/World_of_ML/master?filepath=_notebooks%2F2020-10-10-Email_spam.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Vivek2509/World_of_ML/blob/master/_notebooks/2020-10-10-Email_spam.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-10-Email_spam.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Import-library">Import library<a class="anchor-link" href="#Import-library"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Import-dataset">Import dataset<a class="anchor-link" href="#Import-dataset"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">email</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;emails.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>spam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Subject: naturally irresistible your corporate...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Subject: the stock trading gunslinger  fanny i...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Subject: unbelievable new homes made easy  im ...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Subject: 4 color printing special  request add...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Subject: do not have money , get software cds ...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Subject: great nnews  hello , welcome to medzo...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Subject: here ' s a hot play in motion  homela...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Subject: save your money buy getting this thin...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Subject: undeliverable : home based business f...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Subject: save your money buy getting this thin...</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5728</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>text    0
+spam    0
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(5728, 2)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>spam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5723</th>
+      <td>Subject: re : research and development charges...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5724</th>
+      <td>Subject: re : receipts from visit  jim ,  than...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5725</th>
+      <td>Subject: re : enron case study update  wow ! a...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5726</th>
+      <td>Subject: re : interest  david ,  please , call...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5727</th>
+      <td>Subject: news : aurora 5 . 2 update  aurora ve...</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cleaning-the-text">Cleaning the text<a class="anchor-link" href="#Cleaning-the-text"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem.porter</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">email</span><span class="p">)):</span>
+  <span class="n">e_mail</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">email</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+  <span class="n">e_mail</span> <span class="o">=</span> <span class="n">e_mail</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+  <span class="n">ps</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+  <span class="n">e_mail</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">e_mail</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))]</span>
+  <span class="n">e_mail</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e_mail</span><span class="p">)</span>
+  <span class="n">corpus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e_mail</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package stopwords to
+[nltk_data]     C:\Users\patel\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">corpus</span><span class="p">[</span><span class="mi">2509</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;subject enron mid year perform manag process enron mid year perform manag process begun process requir select suggest review provid perform relat feedback may also request provid feedback fellow employe need access perform manag system pep http pep enron com question direct pep help desk follow number u option europ option canada canada employe e mail question perfmgmt enron com log pep enter user id password provid log immedi prompt chang secur password user id password user id wkamin password welcom&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Creating-the-Bag-of-Words-model">Creating the Bag of Words model<a class="anchor-link" href="#Creating-the-Bag-of-Words-model"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">email</span><span class="p">[</span><span class="s1">&#39;spam&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5728</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(5728, 25607)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5728</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Splitting-the-dataset-into-the-Training-set-and-Test-set">Splitting the dataset into the Training set and Test set<a class="anchor-link" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training-the-Naive-Bayes-model-on-the-Training-set">Training the Naive Bayes model on the Training set<a class="anchor-link" href="#Training-the-Naive-Bayes-model-on-the-Training-set"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.GaussianNB">1.GaussianNB<a class="anchor-link" href="#1.GaussianNB"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">GN_classifier</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">GN_classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>GaussianNB()</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">GN_score</span> <span class="o">=</span> <span class="n">GN_classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">GN_score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9607329842931938</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_GN_pred</span> <span class="o">=</span> <span class="n">GN_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_GN_pred</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 0, 1, ..., 0, 0, 1], dtype=int64)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.MultinomialNB">2.MultinomialNB<a class="anchor-link" href="#2.MultinomialNB"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="n">MN_classifier</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">MN_classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>MultinomialNB()</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MN_score</span> <span class="o">=</span> <span class="n">MN_classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">MN_score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9825479930191972</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_MN_pred</span> <span class="o">=</span> <span class="n">MN_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Making-the-Confusion-Matrix">Making the Confusion Matrix<a class="anchor-link" href="#Making-the-Confusion-Matrix"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="n">GN_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_GN_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">GN_cm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[875  10]
+ [ 35 226]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="n">MN_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_MN_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">MN_cm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[870  15]
+ [  5 256]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Compare-Both-models">Compare Both models<a class="anchor-link" href="#Compare-Both-models"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;GaussianNB&quot;</span><span class="p">:</span> <span class="n">GN_score</span><span class="p">,</span>
+                           <span class="s2">&quot;MultinomialNB&quot;</span><span class="p">:</span> <span class="n">MN_score</span>
+                           <span class="p">},</span>
+                          <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">models</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Comapre different models&quot;</span><span class="p">,</span>
+                      <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SAVE-MODEL">SAVE MODEL<a class="anchor-link" href="#SAVE-MODEL"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">MN_classifier</span><span class="p">,</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;Email_spam_naive_bayes_MN.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><a class="u-url" href="/World_of_ML/2020/10/10/Email_spam.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/World_of_ML/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/World_of_ML/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/World_of_ML/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Making world a better with data and machine</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
