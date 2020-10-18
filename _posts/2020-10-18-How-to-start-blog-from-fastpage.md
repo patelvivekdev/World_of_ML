@@ -1,3 +1,10 @@
+---
+toc: true
+layout: post
+description: start write blog direct from markdown.
+categories: [markdown]
+title: Start write blog
+---
 # Start write blog within 10 min
 > How to start write blog direct from markdown and through Jupyter notebook with
 
