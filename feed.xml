@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://vivek2509.github.io/World_of_ML/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vivek2509.github.io/World_of_ML/" rel="alternate" type="text/html" /><updated>2020-10-18T22:59:35-05:00</updated><id>https://vivek2509.github.io/World_of_ML/feed.xml</id><title type="html">World_of_ML</title><subtitle>To make the world a better place, use the data and machine wisely.</subtitle><entry><title type="html">Start writing blog</title><link href="https://vivek2509.github.io/World_of_ML/markdown/2020/10/18/How-to-start-blog-from-fastpage.html" rel="alternate" type="text/html" title="Start writing blog" /><published>2020-10-18T00:00:00-05:00</published><updated>2020-10-18T00:00:00-05:00</updated><id>https://vivek2509.github.io/World_of_ML/markdown/2020/10/18/How-to-start-blog-from-fastpage</id><content type="html" xml:base="https://vivek2509.github.io/World_of_ML/markdown/2020/10/18/How-to-start-blog-from-fastpage.html">&lt;h1 id=&quot;start-writing-blog-within-10-min&quot;&gt;Start writing blog within 10 min&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://vivek2509.github.io/World_of_ML/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vivek2509.github.io/World_of_ML/" rel="alternate" type="text/html" /><updated>2020-10-19T08:55:17-05:00</updated><id>https://vivek2509.github.io/World_of_ML/feed.xml</id><title type="html">World_of_ML</title><subtitle>To make the world a better place, use the data and machine wisely.</subtitle><entry><title type="html">Basic machine learning path</title><link href="https://vivek2509.github.io/World_of_ML/markdown/2020/10/19/Basic-ML-path.html" rel="alternate" type="text/html" title="Basic machine learning path" /><published>2020-10-19T00:00:00-05:00</published><updated>2020-10-19T00:00:00-05:00</updated><id>https://vivek2509.github.io/World_of_ML/markdown/2020/10/19/Basic%20ML%20path</id><content type="html" xml:base="https://vivek2509.github.io/World_of_ML/markdown/2020/10/19/Basic-ML-path.html">&lt;h1 id=&quot;basic-path-to-learn-practical-machine-learning&quot;&gt;Basic path to learn Practical Machine Learning.&lt;/h1&gt;
+
+&lt;h2 id=&quot;prerequisite&quot;&gt;Prerequisite&lt;/h2&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;High school math(vectors, matrices, calculus, probability, and stats)&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Basic Python Help&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Must have Patience to learn new things&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;watch-ai-for-everyone-by-andrew-ng&quot;&gt;Watch &lt;a href=&quot;https://www.coursera.org/learn/ai-for-everyone&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AI For Everyone&lt;/code&gt;&lt;/a&gt; By &lt;a href=&quot;https://en.wikipedia.org/wiki/Andrew_Ng&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Andrew Ng&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;The meaning behind common AI terminology, including neural networks, machine learning, deep learning, and data science.&lt;/li&gt;
+      &lt;li&gt;What AI realistically can–and cannot–do.&lt;/li&gt;
+      &lt;li&gt;How to spot opportunities to apply AI to problems in your own organization.&lt;/li&gt;
+      &lt;li&gt;What it feels like to build machine learning and data science projects.&lt;/li&gt;
+      &lt;li&gt;How to work with an AI team and build an AI strategy in your company.&lt;/li&gt;
+      &lt;li&gt;How to navigate ethical and societal discussions surrounding AI.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;youtube-originals-age-of-ai&quot;&gt;YouTube Originals &lt;a href=&quot;https://www.youtube.com/playlist?list=PLjq6DwYksrzz_fsWIpPcf6V7p2RNAneKc&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AGE OF AI&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;How AI is used in real life&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;started-learning&quot;&gt;Started learning&lt;/h2&gt;
+
+&lt;h3 id=&quot;stage-0&quot;&gt;Stage-0&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Understand basic of machine learning
+    &lt;ul&gt;
+      &lt;li&gt;Supervised Learning&lt;/li&gt;
+      &lt;li&gt;Unsupervised Learning&lt;/li&gt;
+      &lt;li&gt;Classification and Regression&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Learn python and some useful library
+    &lt;ul&gt;
+      &lt;li&gt;Pandas
+        &lt;blockquote&gt;
+          &lt;p&gt;Pandas is a popular Python library for data analysis.&lt;/p&gt;
+        &lt;/blockquote&gt;
+      &lt;/li&gt;
+      &lt;li&gt;NumPy
+        &lt;blockquote&gt;
+          &lt;p&gt;NumPy is a very popular python library for large multi-dimensional array and matrix processing,&lt;/p&gt;
+        &lt;/blockquote&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Matplotlib
+        &lt;blockquote&gt;
+          &lt;p&gt;Matpoltlib is a very popular Python library for data visualization.&lt;/p&gt;
+        &lt;/blockquote&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Setup Local Machine with latest &lt;a href=&quot;https://www.anaconda.com/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Anaconda&lt;/code&gt;&lt;/a&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;Anaconda is a free and open-source distribution of the Python&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;stage-1&quot;&gt;Stage-1&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to use data from verious source like [&lt;a href=&quot;https://www.kaggle.com/datasets&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Kaggle&lt;/code&gt; &lt;/a&gt;  &lt;a href=&quot;https://archive.ics.uci.edu/ml/index.php&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; UCI ml repo&lt;/code&gt;&lt;/a&gt;]&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jupyter notebook&lt;/code&gt; A complate IDE for data science and machine learning&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Started hand on practice with &lt;a href=&quot;https://scikit-learn.org/stable/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scikit-learn&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use &lt;a href=&quot;https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scikit-learn map&lt;/code&gt;&lt;/a&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;documentation&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;stage-2&quot;&gt;Stage-2&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;now, you are a little bit comfortable with coding it’s time to learn basic maths behind algorithms.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Take a Andrew’s &lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Course&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;stege-3&quot;&gt;Stege-3&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Learn &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Deep-learning&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+          &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;neural network&lt;/code&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Learn about popular library [&lt;a href=&quot;https://www.tensorflow.org/tutorials&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; &lt;/a&gt;  &lt;a href=&quot;https://pytorch.org/tutorials/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; PyTorch&lt;/code&gt;&lt;/a&gt;]&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TensorFlow&lt;/code&gt; is backed by Google Brain team and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PyTorch&lt;/code&gt; is eveloped by Facebook’s AI Research lab. Both have large community.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;In neural network
+    &lt;ol&gt;
+      &lt;li&gt;ANN (artificial neural network)&lt;/li&gt;
+      &lt;li&gt;CNN (Convolutional neural network)&lt;/li&gt;
+      &lt;li&gt;RNN (Recurrent neural networks)&lt;/li&gt;
+      &lt;li&gt;Autoencoder&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;happy-coding-and-have-a-good-time-learning-how-to-make-machines-smarter&quot;&gt;&lt;em&gt;Happy coding and have a good time learning how to make machines smarter.&lt;/em&gt;&lt;/h2&gt;</content><author><name></name></author><category term="markdown" /><summary type="html">Basic path to learn Practical Machine Learning.</summary></entry><entry><title type="html">Start writing blog</title><link href="https://vivek2509.github.io/World_of_ML/markdown/2020/10/18/How-to-start-blog-from-fastpage.html" rel="alternate" type="text/html" title="Start writing blog" /><published>2020-10-18T00:00:00-05:00</published><updated>2020-10-18T00:00:00-05:00</updated><id>https://vivek2509.github.io/World_of_ML/markdown/2020/10/18/How-to-start-blog-from-fastpage</id><content type="html" xml:base="https://vivek2509.github.io/World_of_ML/markdown/2020/10/18/How-to-start-blog-from-fastpage.html">&lt;h1 id=&quot;start-writing-blog-within-10-min&quot;&gt;Start writing blog within 10 min&lt;/h1&gt;
 &lt;blockquote&gt;
   &lt;p&gt;How to start write blog direct from Github using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Markdown&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jupyter notebook&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
