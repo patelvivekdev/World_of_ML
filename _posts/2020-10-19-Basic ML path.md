@@ -63,14 +63,13 @@ title: Basic machine learning path
  
  4. Use [`scikit-learn map`](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) and `documentation`
 
-
-### Stage-2
+### Step-2
 
  - now, you are a little bit comfortable with coding it's time to learn basic maths behind algorithms. 
 
  - Take a Andrew's [`Course`](https://www.coursera.org/learn/machine-learning) 
 
-### Stege-3
+### Step-3
 
  - Learn `Deep-learning` 
  
@@ -85,8 +84,6 @@ title: Basic machine learning path
     3. RNN (Recurrent neural networks)
     4. Autoencoder
 
-## _Happy coding and have a good time learning how to make machines smarter._
+---
 
-
-
-
+**_Happy coding and have a good time learning how to make machines smarter._**
