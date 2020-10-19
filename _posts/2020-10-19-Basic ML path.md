@@ -33,53 +33,57 @@ title: Basic machine learning path
 
 ## Started learning
 
-### Stage-0
-
-1. Understand basic of machine learning
+### Step-0
+ 
+ 1. Understand basic of machine learning
     - Supervised Learning
     - Unsupervised Learning
     - Classification and Regression
     
-2. Learn python and some useful library
+ 2. Learn python and some useful library
     - Pandas
-      > Pandas is a popular Python library for data analysis.
+        > Pandas is a popular Python library for data analysis.
+        
     - NumPy
-      > NumPy is a very popular python library for large multi-dimensional array and matrix processing,
+        > NumPy is a very popular python library for large multi-dimensional array and matrix processing,
+    
     - Matplotlib
-      > Matpoltlib is a very popular Python library for data visualization.
+        > Matpoltlib is a very popular Python library for data visualization.
       
-3. Setup Local Machine with latest [`Anaconda`](https://www.anaconda.com/)
+ 3. Setup Local Machine with latest [`Anaconda`](https://www.anaconda.com/)
     > Anaconda is a free and open-source distribution of the Python
 
-### Stage-1
+### Step-1
 
-1. How to use data from verious source like [[`Kaggle` ](https://www.kaggle.com/datasets)  [` UCI ml repo`](https://archive.ics.uci.edu/ml/index.php)]
-
-2. Start to use `Jupyter notebook` A complate IDE for data science and machine learning
-
-3. Started hand on practice with [`scikit-learn`](https://scikit-learn.org/stable/)
-
-4. Use [`scikit-learn map`](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) and `documentation`
+ 1. How to use data from verious source like [[`Kaggle` ](https://www.kaggle.com/datasets)  [` UCI ml repo`](https://archive.ics.uci.edu/ml/index.php)]
+ 
+ 2. Start to use `Jupyter notebook` A complate IDE for data science and machine learning
+ 
+ 3. Started hand on practice with [`scikit-learn`](https://scikit-learn.org/stable/)
+ 
+ 4. Use [`scikit-learn map`](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) and `documentation`
 
 
 ### Stage-2
 
-- now, you are a little bit comfortable with coding it's time to learn basic maths behind algorithms. 
+ - now, you are a little bit comfortable with coding it's time to learn basic maths behind algorithms. 
 
-- Take a Andrew's [`Course`](https://www.coursera.org/learn/machine-learning) 
+ - Take a Andrew's [`Course`](https://www.coursera.org/learn/machine-learning) 
 
 ### Stege-3
 
-- Learn `Deep-learning` || `neural network`
-
-- Learn about popular library [[`TensorFlow` ](https://www.tensorflow.org/tutorials)  [` PyTorch`](https://pytorch.org/tutorials/)]
-- `TensorFlow` is backed by Google Brain team and `PyTorch` is eveloped by Facebook's AI Research lab. Both have large community.
-
-- In neural network
-  1. ANN (artificial neural network)
-  2. CNN (Convolutional neural network)
-  3. RNN (Recurrent neural networks)
-  4. Autoencoder
+ - Learn `Deep-learning` 
+ 
+ - Learn about popular library [[`TensorFlow` ](https://www.tensorflow.org/tutorials)  [` PyTorch`](https://pytorch.org/tutorials/)]
+    - `TensorFlow` is backed by Google Brain team.
+    - `PyTorch` is eveloped by Facebook's AI Research lab.
+    - Both have large community.
+ 
+ - In neural network Learn 
+    1. ANN (artificial neural network)
+    2. CNN (Convolutional neural network)
+    3. RNN (Recurrent neural networks)
+    4. Autoencoder
 
 ## _Happy coding and have a good time learning how to make machines smarter._
 
