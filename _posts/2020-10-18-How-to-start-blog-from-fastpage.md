@@ -34,7 +34,7 @@ title: Start writing blog
   
 ## Adding stuff
   - Make sure are you add stuff into direct `master OR main` branch.<br> 
-  - You can add notebook, word and markdown file into `_notebook` , `_posts` and `_word` folder according to. <br>
+  - You can add notebook, markdown and words file into `_notebook` , `_posts` and `_word` folder accordingly with right `name formet`. <br>
   - You can upload all your local images in `images` folder<br>
   
    ![]({{ site.baseurl }}/images/Add.png)
@@ -42,3 +42,4 @@ title: Start writing blog
    <br>
       
 ---
+## _Happy blogging_
