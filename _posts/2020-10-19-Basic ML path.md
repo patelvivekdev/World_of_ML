@@ -11,8 +11,8 @@ title: Basic machine learning path
 ## Prerequisite
 
 - [x] High school math(vectors, matrices, calculus, probability, and stats) 
-- [x] Basic Python Help
-- [x] Must have Patience to learn new things
+- [x] Basic Python Help.
+- [x] Must have Patience to learn new things.
 
 ---
 
@@ -27,7 +27,7 @@ title: Basic machine learning path
     - How to navigate ethical and societal discussions surrounding AI.
   
 2. ### YouTube Originals [`AGE OF AI`](https://www.youtube.com/playlist?list=PLjq6DwYksrzz_fsWIpPcf6V7p2RNAneKc)
-    > How AI is used in real life
+    > How AI is used in real life.
   
 ---
 
@@ -45,40 +45,41 @@ title: Basic machine learning path
         > Pandas is a popular Python library for data analysis.
         
     - NumPy
-        > NumPy is a very popular python library for large multi-dimensional array and matrix processing,
+        > NumPy is a very popular python library for large multi-dimensional array and matrix processing.
     
     - Matplotlib
         > Matpoltlib is a very popular Python library for data visualization.
       
  3. Setup Local Machine with latest [`Anaconda`](https://www.anaconda.com/)
-    > Anaconda is a free and open-source distribution of the Python
+    > Anaconda is a free and open-source distribution of the Python and R.
 
 ### Step-1
 
- 1. How to use data from verious source like [[`Kaggle` ](https://www.kaggle.com/datasets)  [` UCI ml repo`](https://archive.ics.uci.edu/ml/index.php)]
+ 1. How to use data from verious source like [[`Kaggle` ](https://www.kaggle.com/datasets)  [` UCI ml repo`](https://archive.ics.uci.edu/ml/index.php)].
  
- 2. Start to use `Jupyter notebook` A complate IDE for data science and machine learning
+ 2. Start to use `Jupyter notebook` A complate IDE for data science and machine learning.
  
- 3. Started hand on practice with [`scikit-learn`](https://scikit-learn.org/stable/)
+ 3. Started hand on practice with [`scikit-learn.`](https://scikit-learn.org/stable/)
  
- 4. Use [`scikit-learn map`](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) and `documentation`
+ 4. Use [`scikit-learn map`](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) and `documentation`.
 
 ### Step-2
 
- - now, you are a little bit comfortable with coding it's time to learn basic maths behind algorithms. 
+ - Now, you are a little bit comfortable with coding it's time to learn basic maths behind those algorithms. 
 
- - Take a Andrew's [`Course`](https://www.coursera.org/learn/machine-learning) 
+ - Take a Andrew's [`Course`](https://www.coursera.org/learn/machine-learning). 
 
 ### Step-3
 
- - Learn `Deep-learning` 
+ - Learn about `Deep-learning`.
  
  - Learn about popular library [[`TensorFlow` ](https://www.tensorflow.org/tutorials)  [` PyTorch`](https://pytorch.org/tutorials/)]
     - `TensorFlow` is backed by Google Brain team.
-    - `PyTorch` is eveloped by Facebook's AI Research lab.
+    - `PyTorch` is developed by Facebook's AI Research lab.
     - Both have large community.
+    - There are other librarys as well like Theano, Keras, Caffe, Apache MXNet and many more.
  
- - In neural network Learn 
+ - In neural network learn 
     1. ANN (artificial neural network)
     2. CNN (Convolutional neural network)
     3. RNN (Recurrent neural networks)
@@ -86,4 +87,4 @@ title: Basic machine learning path
 
 ---
 
-**_Happy coding and have a good time learning how to make machines smarter._**
+**_Happy coding and have a great time learning how to make machines smarter._**
