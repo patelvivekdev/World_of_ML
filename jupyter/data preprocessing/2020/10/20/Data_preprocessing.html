@@ -10,13 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A tutorial of how to do data preprocessing with scikit-learn." />
 <meta property="og:description" content="A tutorial of how to do data preprocessing with scikit-learn." />
-<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/21/Data_preprocessing.html" />
-<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/21/Data_preprocessing.html" />
+<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/20/Data_preprocessing.html" />
+<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/20/Data_preprocessing.html" />
 <meta property="og:site_name" content="World_of_ML" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-10-21T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-10-20T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"A tutorial of how to do data preprocessing with scikit-learn.","url":"https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/21/Data_preprocessing.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/21/Data_preprocessing.html"},"headline":"Data Preprocessing","dateModified":"2020-10-21T00:00:00-05:00","datePublished":"2020-10-21T00:00:00-05:00","@context":"https://schema.org"}</script>
+{"description":"A tutorial of how to do data preprocessing with scikit-learn.","url":"https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/20/Data_preprocessing.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/jupyter/data%20preprocessing/2020/10/20/Data_preprocessing.html"},"headline":"Data Preprocessing","dateModified":"2020-10-20T00:00:00-05:00","datePublished":"2020-10-20T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/World_of_ML/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://vivek2509.github.io/World_of_ML/feed.xml" title="World_of_ML" /><link rel="shortcut icon" type="image/x-icon" href="/World_of_ML/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -71,8 +71,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Data Preprocessing</h1><p class="page-description">A tutorial of how to do data preprocessing with scikit-learn.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-21T00:00:00-05:00" itemprop="datePublished">
-        Oct 21, 2020
+    <h1 class="post-title p-name" itemprop="name headline">Data Preprocessing</h1><p class="page-description">A tutorial of how to do data preprocessing with scikit-learn.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-20T00:00:00-05:00" itemprop="datePublished">
+        Oct 20, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -98,19 +98,19 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-wrap flex-justify-end">
           <div class="px-2">
 
-    <a href="https://github.com/Vivek2509/World_of_ML/tree/master/_notebooks/2020-10-21-Data_preprocessing.ipynb" role="button" target="_blank">
+    <a href="https://github.com/Vivek2509/World_of_ML/tree/master/_notebooks/2020-10-20-Data_preprocessing.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/World_of_ML/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/Vivek2509/World_of_ML/master?filepath=_notebooks%2F2020-10-21-Data_preprocessing.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/Vivek2509/World_of_ML/master?filepath=_notebooks%2F2020-10-20-Data_preprocessing.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/World_of_ML/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/Vivek2509/World_of_ML/blob/master/_notebooks/2020-10-21-Data_preprocessing.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/Vivek2509/World_of_ML/blob/master/_notebooks/2020-10-20-Data_preprocessing.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/World_of_ML/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -142,7 +142,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2020-10-21-Data_preprocessing.ipynb
+# file to edit: _notebooks/2020-10-20-Data_preprocessing.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -1519,7 +1519,7 @@ dtype: int64</pre>
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/World_of_ML/jupyter/data%20preprocessing/2020/10/21/Data_preprocessing.html" hidden></a>
+</script><a class="u-url" href="/World_of_ML/jupyter/data%20preprocessing/2020/10/20/Data_preprocessing.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
