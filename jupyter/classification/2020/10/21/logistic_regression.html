@@ -8,15 +8,15 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Logistic Regression" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="To make the world a better place, use the data and machine wisely." />
-<meta property="og:description" content="To make the world a better place, use the data and machine wisely." />
-<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/2020/10/21/logistic_regression.html" />
-<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/2020/10/21/logistic_regression.html" />
+<meta name="description" content="Using sklearn.linear_model LogisticRegression" />
+<meta property="og:description" content="Using sklearn.linear_model LogisticRegression" />
+<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/jupyter/classification/2020/10/21/logistic_regression.html" />
+<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/jupyter/classification/2020/10/21/logistic_regression.html" />
 <meta property="og:site_name" content="World_of_ML" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-21T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"https://vivek2509.github.io/World_of_ML/2020/10/21/logistic_regression.html","@type":"BlogPosting","headline":"Logistic Regression","dateModified":"2020-10-21T00:00:00-05:00","datePublished":"2020-10-21T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/2020/10/21/logistic_regression.html"},"description":"To make the world a better place, use the data and machine wisely.","@context":"https://schema.org"}</script>
+{"url":"https://vivek2509.github.io/World_of_ML/jupyter/classification/2020/10/21/logistic_regression.html","@type":"BlogPosting","headline":"Logistic Regression","dateModified":"2020-10-21T00:00:00-05:00","datePublished":"2020-10-21T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/jupyter/classification/2020/10/21/logistic_regression.html"},"description":"Using sklearn.linear_model LogisticRegression","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/World_of_ML/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://vivek2509.github.io/World_of_ML/feed.xml" title="World_of_ML" /><link rel="shortcut icon" type="image/x-icon" href="/World_of_ML/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -71,7 +71,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Logistic Regression</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-21T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Logistic Regression</h1><p class="page-description">Using sklearn.linear_model `LogisticRegression`</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-21T00:00:00-05:00" itemprop="datePublished">
         Oct 21, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -81,6 +81,16 @@ window.onload = wrap_img;
     
 </span></p>
 
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#Classification">Classification</a>
+        
+      
+      </p>
     
 
     
@@ -108,7 +118,25 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#0.-Data-Preprocessing">0. Data Preprocessing </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Importing-the-libraries">Importing the libraries </a></li>
+<li class="toc-entry toc-h3"><a href="#Importing-the-dataset">Importing the dataset </a></li>
+<li class="toc-entry toc-h3"><a href="#Check-if-any-null-value">Check if any null value </a></li>
+<li class="toc-entry toc-h3"><a href="#Split-into-X-&-y">Split into X &amp; y </a></li>
+<li class="toc-entry toc-h3"><a href="#Convert-categories-into-numbers">Convert categories into numbers </a></li>
+<li class="toc-entry toc-h3"><a href="#Splitting-the-dataset-into-the-Training-set-and-Test-set">Splitting the dataset into the Training set and Test set </a></li>
+<li class="toc-entry toc-h3"><a href="#Feature-Scaling">Feature Scaling </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#1.Training-the-model-on-the-Training-set">1.Training the model on the Training set </a></li>
+<li class="toc-entry toc-h2"><a href="#2.Predicting-the-Test-set-results">2.Predicting the Test set results </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Making-the-Confusion-Matrix">Making the Confusion Matrix </a></li>
+</ul>
+</li>
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -117,15 +145,21 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="0.-Data-Preprocessing">0. Data Preprocessing<a class="anchor-link" href="#0.-Data-Preprocessing"> </a></h2>
+<h2 id="0.-Data-Preprocessing">
+<a class="anchor" href="#0.-Data-Preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>0. Data Preprocessing<a class="anchor-link" href="#0.-Data-Preprocessing"> </a>
+</h2>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Importing-the-libraries">Importing the libraries<a class="anchor-link" href="#Importing-the-libraries"> </a></h3>
+<h3 id="Importing-the-libraries">
+<a class="anchor" href="#Importing-the-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing the libraries<a class="anchor-link" href="#Importing-the-libraries"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -148,9 +182,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Importing-the-dataset">Importing the dataset<a class="anchor-link" href="#Importing-the-dataset"> </a></h3>
+<h3 id="Importing-the-dataset">
+<a class="anchor" href="#Importing-the-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing the dataset<a class="anchor-link" href="#Importing-the-dataset"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -161,7 +198,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Social_Network_Ads.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'Social_Network_Ads.csv'</span><span class="p">)</span>
 <span class="n">dataset</span>
 </pre></div>
 
@@ -304,9 +341,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-if-any-null-value">Check if any null value<a class="anchor-link" href="#Check-if-any-null-value"> </a></h3>
+<h3 id="Check-if-any-null-value">
+<a class="anchor" href="#Check-if-any-null-value" aria-hidden="true"><span class="octicon octicon-link"></span></a>Check if any null value<a class="anchor-link" href="#Check-if-any-null-value"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -368,7 +408,7 @@ dtype: int64</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 400 entries, 0 to 399
 Data columns (total 5 columns):
  #   Column           Non-Null Count  Dtype 
@@ -397,7 +437,7 @@ memory usage: 15.8+ KB
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;User ID&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'User ID'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -501,9 +541,12 @@ memory usage: 15.8+ KB
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Split-into-X-&amp;-y">Split into X &amp; y<a class="anchor-link" href="#Split-into-X-&amp;-y"> </a></h3>
+<h3 id="Split-into-X-&amp;-y">
+<a class="anchor" href="#Split-into-X-&amp;-y" aria-hidden="true"><span class="octicon octicon-link"></span></a>Split into X &amp; y<a class="anchor-link" href="#Split-into-X-&amp;-y"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -514,7 +557,7 @@ memory usage: 15.8+ KB
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Purchased&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Purchased'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -603,7 +646,7 @@ memory usage: 15.8+ KB
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;Purchased&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'Purchased'</span><span class="p">]</span>
 <span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -635,9 +678,12 @@ Name: Purchased, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Convert-categories-into-numbers">Convert categories into numbers<a class="anchor-link" href="#Convert-categories-into-numbers"> </a></h3>
+<h3 id="Convert-categories-into-numbers">
+<a class="anchor" href="#Convert-categories-into-numbers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convert categories into numbers<a class="anchor-link" href="#Convert-categories-into-numbers"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -651,12 +697,12 @@ Name: Purchased, dtype: int64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
  
-<span class="n">categorical_feature</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Gender&quot;</span><span class="p">]</span>
+<span class="n">categorical_feature</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Gender"</span><span class="p">]</span>
 <span class="n">one_hot</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
-<span class="n">transformer</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;one_hot&quot;</span><span class="p">,</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">"one_hot"</span><span class="p">,</span>
                                   <span class="n">one_hot</span><span class="p">,</span>
                                   <span class="n">categorical_feature</span><span class="p">)],</span>
-                                 <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;passthrough&quot;</span><span class="p">)</span>
+                                 <span class="n">remainder</span><span class="o">=</span><span class="s2">"passthrough"</span><span class="p">)</span>
 
 <span class="n">transformed_X</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
@@ -762,9 +808,12 @@ Name: Purchased, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Splitting-the-dataset-into-the-Training-set-and-Test-set">Splitting the dataset into the Training set and Test set<a class="anchor-link" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set"> </a></h3>
+<h3 id="Splitting-the-dataset-into-the-Training-set-and-Test-set">
+<a class="anchor" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Splitting the dataset into the Training set and Test set<a class="anchor-link" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -786,9 +835,12 @@ Name: Purchased, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Feature-Scaling">Feature Scaling<a class="anchor-link" href="#Feature-Scaling"> </a></h3>
+<h3 id="Feature-Scaling">
+<a class="anchor" href="#Feature-Scaling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Feature Scaling<a class="anchor-link" href="#Feature-Scaling"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -812,9 +864,12 @@ Name: Purchased, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.Training-the-model-on-the-Training-set">1.Training the model on the Training set<a class="anchor-link" href="#1.Training-the-model-on-the-Training-set"> </a></h2>
+<h2 id="1.Training-the-model-on-the-Training-set">
+<a class="anchor" href="#1.Training-the-model-on-the-Training-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.Training the model on the Training set<a class="anchor-link" href="#1.Training-the-model-on-the-Training-set"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -887,9 +942,12 @@ Name: Purchased, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.Predicting-the-Test-set-results">2.Predicting the Test set results<a class="anchor-link" href="#2.Predicting-the-Test-set-results"> </a></h2>
+<h2 id="2.Predicting-the-Test-set-results">
+<a class="anchor" href="#2.Predicting-the-Test-set-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.Predicting the Test set results<a class="anchor-link" href="#2.Predicting-the-Test-set-results"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -910,9 +968,12 @@ Name: Purchased, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Making-the-Confusion-Matrix">Making the Confusion Matrix<a class="anchor-link" href="#Making-the-Confusion-Matrix"> </a></h3>
+<h3 id="Making-the-Confusion-Matrix">
+<a class="anchor" href="#Making-the-Confusion-Matrix" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making the Confusion Matrix<a class="anchor-link" href="#Making-the-Confusion-Matrix"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -954,7 +1015,15 @@ Name: Purchased, dtype: int64</pre>
 
 
 
-  </div><a class="u-url" href="/World_of_ML/2020/10/21/logistic_regression.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Vivek2509/World_of_ML"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/World_of_ML/jupyter/classification/2020/10/21/logistic_regression.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
