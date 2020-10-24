@@ -3,6 +3,7 @@
 *~
 _site
 .sass-cache
+.ipynb_checkpoints
 .jekyll-cache
 .jekyll-metadata
 vendor
