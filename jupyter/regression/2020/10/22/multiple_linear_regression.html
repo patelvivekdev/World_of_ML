@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Multiple Linear Regression | World_of_ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Multiple Linear Regression" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial on How to use Multiple Linear Regression." />
+<meta property="og:description" content="A tutorial on How to use Multiple Linear Regression." />
+<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/22/multiple_linear_regression.html" />
+<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/22/multiple_linear_regression.html" />
+<meta property="og:site_name" content="World_of_ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-22T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial on How to use Multiple Linear Regression.","url":"https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/22/multiple_linear_regression.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/22/multiple_linear_regression.html"},"headline":"Multiple Linear Regression","dateModified":"2020-10-22T00:00:00-05:00","datePublished":"2020-10-22T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/World_of_ML/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://vivek2509.github.io/World_of_ML/feed.xml" title="World_of_ML" /><link rel="shortcut icon" type="image/x-icon" href="/World_of_ML/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/World_of_ML/">World_of_ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/World_of_ML/about/">About Me</a><a class="page-link" href="/World_of_ML/search/">Search</a><a class="page-link" href="/World_of_ML/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Multiple Linear Regression</h1><p class="page-description">A tutorial on How to use Multiple Linear Regression.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-22T00:00:00-05:00" itemprop="datePublished">
+        Oct 22, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#Regression">Regression</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/Vivek2509/World_of_ML/tree/master/_notebooks/2020-10-22-multiple_linear_regression.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/World_of_ML/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Vivek2509/World_of_ML/master?filepath=_notebooks%2F2020-10-22-multiple_linear_regression.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Vivek2509/World_of_ML/blob/master/_notebooks/2020-10-22-multiple_linear_regression.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Data-Preprocessing">Data Preprocessing </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Importing-the-libraries">Importing the libraries </a></li>
+<li class="toc-entry toc-h3"><a href="#Importing-the-dataset">Importing the dataset </a></li>
+<li class="toc-entry toc-h3"><a href="#Check-if-any-null-value">Check if any null value </a></li>
+<li class="toc-entry toc-h3"><a href="#Split-into-X-&-y">Split into X &amp; y </a></li>
+<li class="toc-entry toc-h3"><a href="#Encoding-categorical-data">Encoding categorical data </a></li>
+<li class="toc-entry toc-h3"><a href="#Splitting-the-dataset-into-the-Training-set-and-Test-set">Splitting the dataset into the Training set and Test set </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Training-the-Multiple-Linear-Regression-model-on-the-Training-set">Training the Multiple Linear Regression model on the Training set </a></li>
+<li class="toc-entry toc-h2"><a href="#Predicting-the-Test-set-results">Predicting the Test set results </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-22-multiple_linear_regression.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Preprocessing">
+<a class="anchor" href="#Data-Preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Preprocessing<a class="anchor-link" href="#Data-Preprocessing"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Importing-the-libraries">
+<a class="anchor" href="#Importing-the-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing the libraries<a class="anchor-link" href="#Importing-the-libraries"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Importing-the-dataset">
+<a class="anchor" href="#Importing-the-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing the dataset<a class="anchor-link" href="#Importing-the-dataset"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'50_Startups.csv'</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R&amp;D Spend</th>
+      <th>Administration</th>
+      <th>Marketing Spend</th>
+      <th>State</th>
+      <th>Profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>165349.20</td>
+      <td>136897.80</td>
+      <td>471784.10</td>
+      <td>New York</td>
+      <td>192261.83</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>162597.70</td>
+      <td>151377.59</td>
+      <td>443898.53</td>
+      <td>California</td>
+      <td>191792.06</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>153441.51</td>
+      <td>101145.55</td>
+      <td>407934.54</td>
+      <td>Florida</td>
+      <td>191050.39</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>144372.41</td>
+      <td>118671.85</td>
+      <td>383199.62</td>
+      <td>New York</td>
+      <td>182901.99</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>142107.34</td>
+      <td>91391.77</td>
+      <td>366168.42</td>
+      <td>Florida</td>
+      <td>166187.94</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>131876.90</td>
+      <td>99814.71</td>
+      <td>362861.36</td>
+      <td>New York</td>
+      <td>156991.12</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>134615.46</td>
+      <td>147198.87</td>
+      <td>127716.82</td>
+      <td>California</td>
+      <td>156122.51</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>130298.13</td>
+      <td>145530.06</td>
+      <td>323876.68</td>
+      <td>Florida</td>
+      <td>155752.60</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>120542.52</td>
+      <td>148718.95</td>
+      <td>311613.29</td>
+      <td>New York</td>
+      <td>152211.77</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>123334.88</td>
+      <td>108679.17</td>
+      <td>304981.62</td>
+      <td>California</td>
+      <td>149759.96</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>101913.08</td>
+      <td>110594.11</td>
+      <td>229160.95</td>
+      <td>Florida</td>
+      <td>146121.95</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>100671.96</td>
+      <td>91790.61</td>
+      <td>249744.55</td>
+      <td>California</td>
+      <td>144259.40</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>93863.75</td>
+      <td>127320.38</td>
+      <td>249839.44</td>
+      <td>Florida</td>
+      <td>141585.52</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>91992.39</td>
+      <td>135495.07</td>
+      <td>252664.93</td>
+      <td>California</td>
+      <td>134307.35</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>119943.24</td>
+      <td>156547.42</td>
+      <td>256512.92</td>
+      <td>Florida</td>
+      <td>132602.65</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>114523.61</td>
+      <td>122616.84</td>
+      <td>261776.23</td>
+      <td>New York</td>
+      <td>129917.04</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>78013.11</td>
+      <td>121597.55</td>
+      <td>264346.06</td>
+      <td>California</td>
+      <td>126992.93</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>94657.16</td>
+      <td>145077.58</td>
+      <td>282574.31</td>
+      <td>New York</td>
+      <td>125370.37</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>91749.16</td>
+      <td>114175.79</td>
+      <td>294919.57</td>
+      <td>Florida</td>
+      <td>124266.90</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>86419.70</td>
+      <td>153514.11</td>
+      <td>0.00</td>
+      <td>New York</td>
+      <td>122776.86</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>76253.86</td>
+      <td>113867.30</td>
+      <td>298664.47</td>
+      <td>California</td>
+      <td>118474.03</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>78389.47</td>
+      <td>153773.43</td>
+      <td>299737.29</td>
+      <td>New York</td>
+      <td>111313.02</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>73994.56</td>
+      <td>122782.75</td>
+      <td>303319.26</td>
+      <td>Florida</td>
+      <td>110352.25</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>67532.53</td>
+      <td>105751.03</td>
+      <td>304768.73</td>
+      <td>Florida</td>
+      <td>108733.99</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>77044.01</td>
+      <td>99281.34</td>
+      <td>140574.81</td>
+      <td>New York</td>
+      <td>108552.04</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>64664.71</td>
+      <td>139553.16</td>
+      <td>137962.62</td>
+      <td>California</td>
+      <td>107404.34</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>75328.87</td>
+      <td>144135.98</td>
+      <td>134050.07</td>
+      <td>Florida</td>
+      <td>105733.54</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>72107.60</td>
+      <td>127864.55</td>
+      <td>353183.81</td>
+      <td>New York</td>
+      <td>105008.31</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>66051.52</td>
+      <td>182645.56</td>
+      <td>118148.20</td>
+      <td>Florida</td>
+      <td>103282.38</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>65605.48</td>
+      <td>153032.06</td>
+      <td>107138.38</td>
+      <td>New York</td>
+      <td>101004.64</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>61994.48</td>
+      <td>115641.28</td>
+      <td>91131.24</td>
+      <td>Florida</td>
+      <td>99937.59</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>61136.38</td>
+      <td>152701.92</td>
+      <td>88218.23</td>
+      <td>New York</td>
+      <td>97483.56</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>63408.86</td>
+      <td>129219.61</td>
+      <td>46085.25</td>
+      <td>California</td>
+      <td>97427.84</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>55493.95</td>
+      <td>103057.49</td>
+      <td>214634.81</td>
+      <td>Florida</td>
+      <td>96778.92</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>46426.07</td>
+      <td>157693.92</td>
+      <td>210797.67</td>
+      <td>California</td>
+      <td>96712.80</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>46014.02</td>
+      <td>85047.44</td>
+      <td>205517.64</td>
+      <td>New York</td>
+      <td>96479.51</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>28663.76</td>
+      <td>127056.21</td>
+      <td>201126.82</td>
+      <td>Florida</td>
+      <td>90708.19</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>44069.95</td>
+      <td>51283.14</td>
+      <td>197029.42</td>
+      <td>California</td>
+      <td>89949.14</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>20229.59</td>
+      <td>65947.93</td>
+      <td>185265.10</td>
+      <td>New York</td>
+      <td>81229.06</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>38558.51</td>
+      <td>82982.09</td>
+      <td>174999.30</td>
+      <td>California</td>
+      <td>81005.76</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>28754.33</td>
+      <td>118546.05</td>
+      <td>172795.67</td>
+      <td>California</td>
+      <td>78239.91</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>27892.92</td>
+      <td>84710.77</td>
+      <td>164470.71</td>
+      <td>Florida</td>
+      <td>77798.83</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>23640.93</td>
+      <td>96189.63</td>
+      <td>148001.11</td>
+      <td>California</td>
+      <td>71498.49</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>15505.73</td>
+      <td>127382.30</td>
+      <td>35534.17</td>
+      <td>New York</td>
+      <td>69758.98</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>22177.74</td>
+      <td>154806.14</td>
+      <td>28334.72</td>
+      <td>California</td>
+      <td>65200.33</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>1000.23</td>
+      <td>124153.04</td>
+      <td>1903.93</td>
+      <td>New York</td>
+      <td>64926.08</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>1315.46</td>
+      <td>115816.21</td>
+      <td>297114.46</td>
+      <td>Florida</td>
+      <td>49490.75</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.00</td>
+      <td>135426.92</td>
+      <td>0.00</td>
+      <td>California</td>
+      <td>42559.73</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>542.05</td>
+      <td>51743.15</td>
+      <td>0.00</td>
+      <td>New York</td>
+      <td>35673.41</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.00</td>
+      <td>116983.80</td>
+      <td>45173.06</td>
+      <td>California</td>
+      <td>14681.40</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Check-if-any-null-value">
+<a class="anchor" href="#Check-if-any-null-value" aria-hidden="true"><span class="octicon octicon-link"></span></a>Check if any null value<a class="anchor-link" href="#Check-if-any-null-value"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>R&amp;D Spend          0
+Administration     0
+Marketing Spend    0
+State              0
+Profit             0
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 5 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   R&amp;D Spend        50 non-null     float64
+ 1   Administration   50 non-null     float64
+ 2   Marketing Spend  50 non-null     float64
+ 3   State            50 non-null     object 
+ 4   Profit           50 non-null     float64
+dtypes: float64(4), object(1)
+memory usage: 2.1+ KB
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Split-into-X-&amp;-y">
+<a class="anchor" href="#Split-into-X-&amp;-y" aria-hidden="true"><span class="octicon octicon-link"></span></a>Split into X &amp; y<a class="anchor-link" href="#Split-into-X-&amp;-y"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Profit'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R&amp;D Spend</th>
+      <th>Administration</th>
+      <th>Marketing Spend</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>165349.20</td>
+      <td>136897.80</td>
+      <td>471784.10</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>162597.70</td>
+      <td>151377.59</td>
+      <td>443898.53</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>153441.51</td>
+      <td>101145.55</td>
+      <td>407934.54</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>144372.41</td>
+      <td>118671.85</td>
+      <td>383199.62</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>142107.34</td>
+      <td>91391.77</td>
+      <td>366168.42</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>131876.90</td>
+      <td>99814.71</td>
+      <td>362861.36</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>134615.46</td>
+      <td>147198.87</td>
+      <td>127716.82</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>130298.13</td>
+      <td>145530.06</td>
+      <td>323876.68</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>120542.52</td>
+      <td>148718.95</td>
+      <td>311613.29</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>123334.88</td>
+      <td>108679.17</td>
+      <td>304981.62</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>101913.08</td>
+      <td>110594.11</td>
+      <td>229160.95</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>100671.96</td>
+      <td>91790.61</td>
+      <td>249744.55</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>93863.75</td>
+      <td>127320.38</td>
+      <td>249839.44</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>91992.39</td>
+      <td>135495.07</td>
+      <td>252664.93</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>119943.24</td>
+      <td>156547.42</td>
+      <td>256512.92</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>114523.61</td>
+      <td>122616.84</td>
+      <td>261776.23</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>78013.11</td>
+      <td>121597.55</td>
+      <td>264346.06</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>94657.16</td>
+      <td>145077.58</td>
+      <td>282574.31</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>91749.16</td>
+      <td>114175.79</td>
+      <td>294919.57</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>86419.70</td>
+      <td>153514.11</td>
+      <td>0.00</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>76253.86</td>
+      <td>113867.30</td>
+      <td>298664.47</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>78389.47</td>
+      <td>153773.43</td>
+      <td>299737.29</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>73994.56</td>
+      <td>122782.75</td>
+      <td>303319.26</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>67532.53</td>
+      <td>105751.03</td>
+      <td>304768.73</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>77044.01</td>
+      <td>99281.34</td>
+      <td>140574.81</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>64664.71</td>
+      <td>139553.16</td>
+      <td>137962.62</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>75328.87</td>
+      <td>144135.98</td>
+      <td>134050.07</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>72107.60</td>
+      <td>127864.55</td>
+      <td>353183.81</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>66051.52</td>
+      <td>182645.56</td>
+      <td>118148.20</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>65605.48</td>
+      <td>153032.06</td>
+      <td>107138.38</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>61994.48</td>
+      <td>115641.28</td>
+      <td>91131.24</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>61136.38</td>
+      <td>152701.92</td>
+      <td>88218.23</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>63408.86</td>
+      <td>129219.61</td>
+      <td>46085.25</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>55493.95</td>
+      <td>103057.49</td>
+      <td>214634.81</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>46426.07</td>
+      <td>157693.92</td>
+      <td>210797.67</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>46014.02</td>
+      <td>85047.44</td>
+      <td>205517.64</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>28663.76</td>
+      <td>127056.21</td>
+      <td>201126.82</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>44069.95</td>
+      <td>51283.14</td>
+      <td>197029.42</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>20229.59</td>
+      <td>65947.93</td>
+      <td>185265.10</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>38558.51</td>
+      <td>82982.09</td>
+      <td>174999.30</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>28754.33</td>
+      <td>118546.05</td>
+      <td>172795.67</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>27892.92</td>
+      <td>84710.77</td>
+      <td>164470.71</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>23640.93</td>
+      <td>96189.63</td>
+      <td>148001.11</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>15505.73</td>
+      <td>127382.30</td>
+      <td>35534.17</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>22177.74</td>
+      <td>154806.14</td>
+      <td>28334.72</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>1000.23</td>
+      <td>124153.04</td>
+      <td>1903.93</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>1315.46</td>
+      <td>115816.21</td>
+      <td>297114.46</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.00</td>
+      <td>135426.92</td>
+      <td>0.00</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>542.05</td>
+      <td>51743.15</td>
+      <td>0.00</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.00</td>
+      <td>116983.80</td>
+      <td>45173.06</td>
+      <td>California</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'Profit'</span><span class="p">]</span>
+<span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0     192261.83
+1     191792.06
+2     191050.39
+3     182901.99
+4     166187.94
+5     156991.12
+6     156122.51
+7     155752.60
+8     152211.77
+9     149759.96
+10    146121.95
+11    144259.40
+12    141585.52
+13    134307.35
+14    132602.65
+15    129917.04
+16    126992.93
+17    125370.37
+18    124266.90
+19    122776.86
+20    118474.03
+21    111313.02
+22    110352.25
+23    108733.99
+24    108552.04
+25    107404.34
+26    105733.54
+27    105008.31
+28    103282.38
+29    101004.64
+30     99937.59
+31     97483.56
+32     97427.84
+33     96778.92
+34     96712.80
+35     96479.51
+36     90708.19
+37     89949.14
+38     81229.06
+39     81005.76
+40     78239.91
+41     77798.83
+42     71498.49
+43     69758.98
+44     65200.33
+45     64926.08
+46     49490.75
+47     42559.73
+48     35673.41
+49     14681.40
+Name: Profit, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Encoding-categorical-data">
+<a class="anchor" href="#Encoding-categorical-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Encoding categorical data<a class="anchor-link" href="#Encoding-categorical-data"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+ 
+<span class="n">categorical_feature</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"State"</span><span class="p">]</span>
+<span class="n">one_hot</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">"one_hot"</span><span class="p">,</span>
+                                  <span class="n">one_hot</span><span class="p">,</span>
+                                  <span class="n">categorical_feature</span><span class="p">)],</span>
+                                 <span class="n">remainder</span><span class="o">=</span><span class="s2">"passthrough"</span><span class="p">)</span>
+
+<span class="n">transformed_X</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed_X</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>165349.20</td>
+      <td>136897.80</td>
+      <td>471784.10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>162597.70</td>
+      <td>151377.59</td>
+      <td>443898.53</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>153441.51</td>
+      <td>101145.55</td>
+      <td>407934.54</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>144372.41</td>
+      <td>118671.85</td>
+      <td>383199.62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>142107.34</td>
+      <td>91391.77</td>
+      <td>366168.42</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Splitting-the-dataset-into-the-Training-set-and-Test-set">
+<a class="anchor" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Splitting the dataset into the Training set and Test set<a class="anchor-link" href="#Splitting-the-dataset-into-the-Training-set-and-Test-set"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">transformed_X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">2509</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training-the-Multiple-Linear-Regression-model-on-the-Training-set">
+<a class="anchor" href="#Training-the-Multiple-Linear-Regression-model-on-the-Training-set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Training the Multiple Linear Regression model on the Training set<a class="anchor-link" href="#Training-the-Multiple-Linear-Regression-model-on-the-Training-set"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>LinearRegression()</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9840064291741994</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Predicting-the-Test-set-results">
+<a class="anchor" href="#Predicting-the-Test-set-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicting the Test set results<a class="anchor-link" href="#Predicting-the-Test-set-results"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'y_pred'</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">'y_test'</span><span class="p">:</span> <span class="n">y_test</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y_pred</th>
+      <th>y_test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>32</th>
+      <td>98884.371543</td>
+      <td>97427.84</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>100047.235184</td>
+      <td>96778.92</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>47766.247901</td>
+      <td>42559.73</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>154976.558305</td>
+      <td>149759.96</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>91129.087779</td>
+      <td>89949.14</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>151755.926389</td>
+      <td>152211.77</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>112436.195860</td>
+      <td>108733.99</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>113375.898676</td>
+      <td>108552.04</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>130706.106786</td>
+      <td>125370.37</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>189141.730655</td>
+      <td>191792.06</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>85217.422839</td>
+      <td>81005.76</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>116952.737156</td>
+      <td>110352.25</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>60343.602070</td>
+      <td>49490.75</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Vivek2509/World_of_ML"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/World_of_ML/jupyter/regression/2020/10/22/multiple_linear_regression.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/World_of_ML/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/World_of_ML/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/World_of_ML/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>To make the world a better place, use the data and machine wisely.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.instagram.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#instagram"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://www.pinterest.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#pinterest"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
