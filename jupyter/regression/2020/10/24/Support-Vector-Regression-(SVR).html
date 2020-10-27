@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Support Vector Regression (SVR) | World_of_ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Support Vector Regression (SVR)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial on How to use SVR." />
+<meta property="og:description" content="A tutorial on How to use SVR." />
+<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/24/Support-Vector-Regression-(SVR).html" />
+<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/24/Support-Vector-Regression-(SVR).html" />
+<meta property="og:site_name" content="World_of_ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial on How to use SVR.","url":"https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/24/Support-Vector-Regression-(SVR).html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/24/Support-Vector-Regression-(SVR).html"},"headline":"Support Vector Regression (SVR)","dateModified":"2020-10-24T00:00:00-05:00","datePublished":"2020-10-24T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/World_of_ML/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://vivek2509.github.io/World_of_ML/feed.xml" title="World_of_ML" /><link rel="shortcut icon" type="image/x-icon" href="/World_of_ML/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/World_of_ML/">World_of_ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/World_of_ML/about/">About Me</a><a class="page-link" href="/World_of_ML/search/">Search</a><a class="page-link" href="/World_of_ML/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Support Vector Regression (SVR)</h1><p class="page-description">A tutorial on How to use SVR.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-24T00:00:00-05:00" itemprop="datePublished">
+        Oct 24, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#Regression">Regression</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/Vivek2509/World_of_ML/tree/master/_notebooks/2020-10-24-Support Vector Regression (SVR).ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/World_of_ML/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Vivek2509/World_of_ML/master?filepath=_notebooks%2F2020-10-24-Support+Vector+Regression+%28SVR%29.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Vivek2509/World_of_ML/blob/master/_notebooks/2020-10-24-Support Vector Regression (SVR).ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#0.-Data-Preprocessing">0. Data Preprocessing </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#0.1-Importing-the-libraries">0.1 Importing the libraries </a></li>
+<li class="toc-entry toc-h3"><a href="#0.2-Importing-the-dataset">0.2 Importing the dataset </a></li>
+<li class="toc-entry toc-h3"><a href="#0.3-Split-into-X-&-y">0.3 Split into X &amp; y </a></li>
+<li class="toc-entry toc-h3"><a href="#0.4-Feature-Scaling">0.4 Feature Scaling </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#1.-Training-the-model-on-the-whole-dataset">1. Training the model on the whole dataset </a></li>
+<li class="toc-entry toc-h2"><a href="#2.-Predicting-a-new-result-with-SVR">2. Predicting a new result with SVR </a></li>
+<li class="toc-entry toc-h2"><a href="#3.-Visualising-the-SVR-results">3. Visualising the SVR results </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-24-Support Vector Regression (SVR).ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="0.-Data-Preprocessing">
+<a class="anchor" href="#0.-Data-Preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>0. Data Preprocessing<a class="anchor-link" href="#0.-Data-Preprocessing"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.1-Importing-the-libraries">
+<a class="anchor" href="#0.1-Importing-the-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1 Importing the libraries<a class="anchor-link" href="#0.1-Importing-the-libraries"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.2-Importing-the-dataset">
+<a class="anchor" href="#0.2-Importing-the-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.2 Importing the dataset<a class="anchor-link" href="#0.2-Importing-the-dataset"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'Position_Salaries.csv'</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Position</th>
+      <th>Level</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Business Analyst</td>
+      <td>1</td>
+      <td>45000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Junior Consultant</td>
+      <td>2</td>
+      <td>50000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Senior Consultant</td>
+      <td>3</td>
+      <td>60000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Manager</td>
+      <td>4</td>
+      <td>80000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Country Manager</td>
+      <td>5</td>
+      <td>110000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Region Manager</td>
+      <td>6</td>
+      <td>150000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Partner</td>
+      <td>7</td>
+      <td>200000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Senior Partner</td>
+      <td>8</td>
+      <td>300000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>C-level</td>
+      <td>9</td>
+      <td>500000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CEO</td>
+      <td>10</td>
+      <td>1000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.3-Split-into-X-&amp;-y">
+<a class="anchor" href="#0.3-Split-into-X-&amp;-y" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.3 Split into X &amp; y<a class="anchor-link" href="#0.3-Split-into-X-&amp;-y"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.4-Feature-Scaling">
+<a class="anchor" href="#0.4-Feature-Scaling" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.4 Feature Scaling<a class="anchor-link" href="#0.4-Feature-Scaling"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="n">sc_X</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">sc_y</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sc_X</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sc_y</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">X</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[-1.5666989 ],
+       [-1.21854359],
+       [-0.87038828],
+       [-0.52223297],
+       [-0.17407766],
+       [ 0.17407766],
+       [ 0.52223297],
+       [ 0.87038828],
+       [ 1.21854359],
+       [ 1.5666989 ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Training-the-model-on-the-whole-dataset">
+<a class="anchor" href="#1.-Training-the-model-on-the-whole-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Training the model on the whole dataset<a class="anchor-link" href="#1.-Training-the-model-on-the-whole-dataset"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="s1">'rbf'</span><span class="p">)</span>
+<span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\VIVEK\1.PYTHON_DEV\env\tensor\lib\site-packages\sklearn\utils\validation.py:72: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(**kwargs)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SVR()</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Predicting-a-new-result-with-SVR">
+<a class="anchor" href="#2.-Predicting-a-new-result-with-SVR" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Predicting a new result with SVR<a class="anchor-link" href="#2.-Predicting-a-new-result-with-SVR"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sc_X</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="mf">6.5</span><span class="p">]])))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([170370.0204065])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Visualising-the-SVR-results">
+<a class="anchor" href="#3.-Visualising-the-SVR-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Visualising the SVR results<a class="anchor-link" href="#3.-Visualising-the-SVR-results"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">sc_X</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="nb">max</span><span class="p">(</span><span class="n">sc_X</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">X_grid</span> <span class="o">=</span> <span class="n">X_grid</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X_grid</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sc_X</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">sc_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'red'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">sc_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sc_X</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_grid</span><span class="p">))),</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'blue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'SVR'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Position level'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Salary'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Vivek2509/World_of_ML"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/World_of_ML/jupyter/regression/2020/10/24/Support-Vector-Regression-(SVR).html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/World_of_ML/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/World_of_ML/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/World_of_ML/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>To make the world a better place, use the data and machine wisely.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.instagram.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#instagram"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://www.pinterest.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#pinterest"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
