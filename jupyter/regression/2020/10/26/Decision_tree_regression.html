@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>decision tree regression | World_of_ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="decision tree regression" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial on How to use decision tree regression." />
+<meta property="og:description" content="A tutorial on How to use decision tree regression." />
+<link rel="canonical" href="https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/26/Decision_tree_regression.html" />
+<meta property="og:url" content="https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/26/Decision_tree_regression.html" />
+<meta property="og:site_name" content="World_of_ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-26T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial on How to use decision tree regression.","url":"https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/26/Decision_tree_regression.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://vivek2509.github.io/World_of_ML/jupyter/regression/2020/10/26/Decision_tree_regression.html"},"headline":"decision tree regression","dateModified":"2020-10-26T00:00:00-05:00","datePublished":"2020-10-26T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/World_of_ML/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://vivek2509.github.io/World_of_ML/feed.xml" title="World_of_ML" /><link rel="shortcut icon" type="image/x-icon" href="/World_of_ML/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/World_of_ML/">World_of_ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/World_of_ML/about/">About Me</a><a class="page-link" href="/World_of_ML/search/">Search</a><a class="page-link" href="/World_of_ML/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">decision tree regression</h1><p class="page-description">A tutorial on How to use decision tree regression.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-26T00:00:00-05:00" itemprop="datePublished">
+        Oct 26, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/World_of_ML/categories/#Regression">Regression</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/Vivek2509/World_of_ML/tree/master/_notebooks/2020-10-26-Decision_tree_regression.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/World_of_ML/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Vivek2509/World_of_ML/master?filepath=_notebooks%2F2020-10-26-Decision_tree_regression.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Vivek2509/World_of_ML/blob/master/_notebooks/2020-10-26-Decision_tree_regression.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/World_of_ML/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#0.-Data-Preprocessing">0. Data Preprocessing </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#0.1-Importing-the-libraries">0.1 Importing the libraries </a></li>
+<li class="toc-entry toc-h3"><a href="#0.2-Importing-the-dataset">0.2 Importing the dataset </a></li>
+<li class="toc-entry toc-h3"><a href="#0.3-Split-into-X-&-y">0.3 Split into X &amp; y </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#1.-Training-the-decision-tree-regression-model-on-the-whole-dataset">1. Training the decision tree regression model on the whole dataset </a></li>
+<li class="toc-entry toc-h2"><a href="#2.-Predicting-a-new-result-with-Linear-Regression">2. Predicting a new result with Linear Regression </a></li>
+<li class="toc-entry toc-h2"><a href="#3.-Visualising-the-Decision-Tree-Regression-results-(higher-resolution)">3. Visualising the Decision Tree Regression results (higher resolution) </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-10-26-Decision_tree_regression.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="0.-Data-Preprocessing">
+<a class="anchor" href="#0.-Data-Preprocessing" aria-hidden="true"><span class="octicon octicon-link"></span></a>0. Data Preprocessing<a class="anchor-link" href="#0.-Data-Preprocessing"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.1-Importing-the-libraries">
+<a class="anchor" href="#0.1-Importing-the-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.1 Importing the libraries<a class="anchor-link" href="#0.1-Importing-the-libraries"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.2-Importing-the-dataset">
+<a class="anchor" href="#0.2-Importing-the-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.2 Importing the dataset<a class="anchor-link" href="#0.2-Importing-the-dataset"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'Position_Salaries.csv'</span><span class="p">)</span>
+<span class="n">dataset</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Position</th>
+      <th>Level</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Business Analyst</td>
+      <td>1</td>
+      <td>45000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Junior Consultant</td>
+      <td>2</td>
+      <td>50000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Senior Consultant</td>
+      <td>3</td>
+      <td>60000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Manager</td>
+      <td>4</td>
+      <td>80000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Country Manager</td>
+      <td>5</td>
+      <td>110000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Region Manager</td>
+      <td>6</td>
+      <td>150000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Partner</td>
+      <td>7</td>
+      <td>200000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Senior Partner</td>
+      <td>8</td>
+      <td>300000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>C-level</td>
+      <td>9</td>
+      <td>500000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CEO</td>
+      <td>10</td>
+      <td>1000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="0.3-Split-into-X-&amp;-y">
+<a class="anchor" href="#0.3-Split-into-X-&amp;-y" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.3 Split into X &amp; y<a class="anchor-link" href="#0.3-Split-into-X-&amp;-y"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Training-the-decision-tree-regression-model-on-the-whole-dataset">
+<a class="anchor" href="#1.-Training-the-decision-tree-regression-model-on-the-whole-dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Training the decision tree regression model on the whole dataset<a class="anchor-link" href="#1.-Training-the-decision-tree-regression-model-on-the-whole-dataset"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+<span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DecisionTreeRegressor()</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Predicting-a-new-result-with-Linear-Regression">
+<a class="anchor" href="#2.-Predicting-a-new-result-with-Linear-Regression" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Predicting a new result with Linear Regression<a class="anchor-link" href="#2.-Predicting-a-new-result-with-Linear-Regression"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mf">6.5</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([150000.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Visualising-the-Decision-Tree-Regression-results-(higher-resolution)">
+<a class="anchor" href="#3.-Visualising-the-Decision-Tree-Regression-results-(higher-resolution)" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Visualising the Decision Tree Regression results (higher resolution)<a class="anchor-link" href="#3.-Visualising-the-Decision-Tree-Regression-results-(higher-resolution)"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">X_grid</span> <span class="o">=</span> <span class="n">X_grid</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X_grid</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'red'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_grid</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'blue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Truth or Bluff (Decision Tree Regression)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Position level'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Salary'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Vivek2509/World_of_ML"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/World_of_ML/jupyter/regression/2020/10/26/Decision_tree_regression.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/World_of_ML/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/World_of_ML/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/World_of_ML/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>To make the world a better place, use the data and machine wisely.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.instagram.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#instagram"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/Vivek2509" title="Vivek2509"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://www.pinterest.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#pinterest"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vivek2509_" title="Vivek2509_"><svg class="svg-icon grey"><use xlink:href="/World_of_ML/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
